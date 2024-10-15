@@ -101,8 +101,8 @@ DATABASES = {
         'NAME': 'tesisbd',  # Replace with your PostgreSQL database name
         'USER': 'tesis',  # Replace with your PostgreSQL username
         'PASSWORD': 'tesis123',  # Replace with your PostgreSQL password
-        'HOST': 'localhost',  # Or use your database server IP
-        'PORT': '5432',  # Default PostgreSQL port
+        'HOST': '10.128.0.2',  # Or use your database server IP
+        'PORT': '',  # Default PostgreSQL port
     }
 }
 
