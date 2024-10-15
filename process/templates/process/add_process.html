@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Crear Actividad{% endblock %}
+
+{% block content %}
+<div class="mt-8 bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto pt-4 border border-blue-900">
+    <h1 class="text-3xl text-blue-900 mb-6">Crear Actividad</h1>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Nombre</label>
+            <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="prop" class="block text-sm font-bold text-gray-700 mb-2">Propiedad</label>
+            <select id="prop" name="prop" class="w-full p-2 border border-gray-300 rounded" >
+                <option value="">---------</option>
+                {% for property in properties %}
+                    <option value="{{ property.id }}">{{ property.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="stage" class="block text-sm font-bold text-gray-700 mb-2">Proceso (Sensible a Mayúsculas y Ortografía: Adquisición, Preparación, Comercialización)</label>
+            <input type="text" id="stage" name="stage" class="w-full p-2 border border-gray-300 rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Descripción</label>
+            <textarea id="description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        </div>
+
+        <!-- On Progress -->
+        <div class="mb-4">
+            <label for="OnProgress" class="block text-sm font-bold text-gray-700 mb-2">En Progreso</label>
+            <input type="checkbox" id="OnProgress" name="OnProgress" class="mr-2" checked onclick="toggleEndDateField()">
+        </div>
+        
+        <!-- Inicio -->
+        <div class="mb-4">
+            <label for="start_date" class="block text-sm font-bold text-gray-700 mb-2">Inicio </label>
+            <input type="date" id="start_date" name="start_date" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+
+        <!-- Fin (conditionally displayed) -->
+        <div id="endDateField" class="mb-4" style="display: none;">
+            <label for="end_date" class="block text-sm font-bold text-gray-700 mb-2">Fin </label>
+            <input type="date" id="end_date" name="end_date" class="w-full p-2 border border-gray-300 rounded">
+        </div>
+
+        <div class="flex items-center justify-center mt-4">
+            <button class="py-2 px-4 bg-blue-900 hover:bg-blue-700 text-sm text-white rounded-full" type="submit">Crear</button>
+        </div>
+    </form>
+
+    <script>
+        function toggleEndDateField() {
+            var endDateField = document.getElementById('endDateField');
+            var onProgressCheckbox = document.getElementById('OnProgress');
+
+            if (onProgressCheckbox.checked) {
+                // On Progress is checked, hide the End Date field
+                endDateField.style.display = 'none';
+            } else {
+                // On Progress is unchecked, show the End Date field
+                endDateField.style.display = 'block';
+            }
+        }
+    </script>
+</div>
+
+{% endblock %}

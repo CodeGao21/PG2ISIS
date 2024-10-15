@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ society.name }}{% endblock %} 
+
+{% block content %}
+<div class="mt-8 mx-auto max-w-4xl">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-8">
+                <h1 class="text-4xl font-bold mb-6 text-blue-900 ">{{ society.name }}</h1>
+
+                {% if society.ruc %}
+                <h2 class="text-xl font-semibold text-blue-900">RUC y VT</h2>
+                <p class="text-gray-600">{{ society.ruc }}</p>
+                {% endif %}
+            
+            <br>
+            {% if society.properties.all %}
+            <h2 class="text-xl font-semibold text-blue-900 mb-4">Propiedades:</h2>
+            <ul class="list-disc pl-5 mb-6">
+                {% for property in society.properties.all %}
+                <li class="text-lg text-gray-600 mb-2">
+                    <a href="{% url 'propierties_process_detail' property.id %}" class="hover:underline">{{ property.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if society.description %}
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-blue-900">Descripción</h2>
+                <p class="text-gray-600">{{ society.description }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Action buttons aligned to the bottom -->
+            <div class="flex justify-end space-x-4 mt-6">
+                <a href="{% url 'societies_edit' society.id %}" class="bg-blue-900 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">Modificar</a>
+                <a href="{% url 'societies_delete' society.id %}" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300">Borrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

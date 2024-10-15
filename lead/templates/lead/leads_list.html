@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Leads{% endblock %}
+
+{% block content %}
+<div class="mt-8 bg-white p-8 rounded-xl shadow-md mx-auto pt-4 overflow-x-auto border border-blue-900 max-w-6xl w-full">
+    <h1 class="text-3xl text-blue-900 mb-6">Leads</h1>
+
+    <!-- Formulario de Filtros y Botón de Crear Lead en la misma fila -->
+    <div class="flex flex-wrap items-end justify-between mb-4">
+        <!-- Botón Crear Lead -->
+        <a href="{% url 'add_lead' %}" class="py-2 px-4 bg-blue-900 hover:bg-blue-700 rounded-full text-white mb-3">Crear Lead</a>
+
+        <form action="" method="get" class="flex flex-wrap items-end">
+            
+            <div class="mr-2">
+                <label for="year" class="block tracking-wide text-gray-700 text-xs font-bold mb-2">Año</label>
+                <select name="year" id="year" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Todos</option>
+                    {% for year in years %}
+                    <option value="{{ year }}" {% if selected_year|stringformat:"s" == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mr-2">
+                <label for="month" class="block tracking-wide text-gray-700 text-xs font-bold mb-2">Mes</label>
+                <select name="month" id="month" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Todos</option>
+                    <option value="1" {% if selected_month == '1' %}selected{% endif %}>Enero</option>
+                    <option value="2" {% if selected_month == '2' %}selected{% endif %}>Febrero</option>
+                    <option value="3" {% if selected_month == '3' %}selected{% endif %}>Marzo</option>
+                    <option value="4" {% if selected_month == '4' %}selected{% endif %}>Abril</option>
+                    <option value="5" {% if selected_month == '5' %}selected{% endif %}>Mayo</option>
+                    <option value="6" {% if selected_month == '6' %}selected{% endif %}>Junio</option>
+                    <option value="7" {% if selected_month == '7' %}selected{% endif %}>Julio</option>
+                    <option value="8" {% if selected_month == '8' %}selected{% endif %}>Agosto</option>
+                    <option value="9" {% if selected_month == '9' %}selected{% endif %}>Septiembre</option>
+                    <option value="10" {% if selected_month == '10' %}selected{% endif %}>Octubre</option>
+                    <option value="11" {% if selected_month == '11' %}selected{% endif %}>Noviembre</option>
+                    <option value="12" {% if selected_month == '12' %}selected{% endif %}>Diciembre</option>
+                </select>
+            </div>
+
+
+
+            <div class="mr-2">
+                <label for="state" class="block tracking-wide text-gray-700 text-xs font-bold mb-2">Estado</label>
+                <select name="state" id="state" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Todos</option>
+                    {% for value, readable_name in states %}
+                        <option value="{{ value }}" {% if selected_state == value %}selected{% endif %}>{{ readable_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mr-2">
+                <label for="status" class="block tracking-wide text-gray-700 text-xs font-bold mb-2">Clasificación</label>
+                <select name="status" id="status" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">Todos</option>
+                    {% for value, readable_name in statuses %}
+                        <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ readable_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Botón Filtrar dentro del formulario -->
+            <button type="submit" class="py-2 px-4 bg-blue-900 hover:bg-blue-700 rounded-full text-white">Filtrar</button>
+        </form>
+    </div>
+
+    <!-- Listado de Leads -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-6">
+        {% for lead in leads %}
+            <a href="{% url 'leads_detail' lead.id %}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-md">
+                <img src="https://source.unsplash.com/800x500/?realstate" alt="{{ lead.name }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
+                <h2 class="text-blue-900 text-lg font-semibold">{{ lead.name }}</h2>
+                <p class="text-gray-700">{{ lead.status }}</p>
+                <p class="text-gray-700">{{ lead.state }}</p>
+                <p class="text-gray-700">{{ lead.date }}</p>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

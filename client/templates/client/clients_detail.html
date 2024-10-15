@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ client.commercialname }}{% endblock %} 
+
+{% block content %}
+<div class="mt-8 mx-auto max-w-4xl relative">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-8">
+            <h1 class="text-4xl font-bold text-blue-900 mb-6">{{ client.commercialname }}</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+
+                    {% if client.description %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Descripción</h2>
+                        <p class="text-gray-600">{{ client.description }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Razón Social</h2>
+                        <p class="text-gray-600">{{ client.corporation }}</p>
+                    </div>
+
+
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Ruc y DV</h2>
+                        <p class="text-gray-600">{{ client.ruc }}</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Representante Legal</h2>
+                        <p class="text-gray-600">{{ client.legalrep }}</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Contacto Principal</h2>
+                        <p class="text-gray-600">{{ client.maincontact }}</p>
+                    </div>
+
+                    {% if client.adresscontact %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Dirección de Contacto</h2>
+                        <p class="text-gray-600">{{ client.adresscontact }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="space-y-4">
+
+                    {% if client.emailcontact %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Correo Electrónico de Contacto</h2>
+                        <p class="text-gray-600">{{ client.emailcontact }}</p>
+                    </div>
+                    {% endif %}
+
+
+                    {% if client.emailcontact1 %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Correo Electrónico Adicional 1</h2>
+                        <p class="text-gray-600">{{ client.emailcontact1 }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if client.emailcontact2 %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Correo Electrónico Adicional 2</h2>
+                        <p class="text-gray-600">{{ client.emailcontact2 }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if client.phonecontact %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Teléfono de Contacto</h2>
+                        <p class="text-gray-600">{{ client.phonecontact }}</p>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Broker</h2>
+                        <p class="text-gray-600">{{ client.broker }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action buttons positioned at the bottom right corner -->
+        <div class="absolute bottom-4 right-4">
+            <a href="{% url 'clients_edit' client.id %}" class="bg-blue-900 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">Modificar</a>
+            <a href="{% url 'clients_delete' client.id %}" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300">Borrar</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

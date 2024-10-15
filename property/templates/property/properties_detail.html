@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ property.name }}{% endblock %} 
+
+{% block content %}
+<div class="mt-8 mx-auto max-w-4xl">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-8">
+            <h1 class="text-4xl font-bold text-blue-900 mb-6">{{ property.name }}</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Información General</h2>
+                        {% if property.society %}
+                        <p class="text-gray-600">Sociedad: {{ property.society }}</p>
+                        {% endif %}
+                        <p class="text-gray-600">Estado: {{ property.get_state_display }}</p>
+                        <p class="text-gray-600">Condición: {{ property.get_condition_display }}</p>
+                        {% if property.description %}
+                        <p class="text-gray-600">Descripción: {{ property.description }}</p>
+                        {% endif %}
+                        {% if property.admin %}
+                        <p class="text-gray-600">Administrador: {{ property.admin }}</p>
+                        {% endif %}
+                        {% if property.adminemail %}
+                        <p class="text-gray-600">Correo Administrador: {{ property.adminemail }}</p>
+                        {% endif %}
+                        {% if property.adminphone %}
+                        <p class="text-gray-600">Teléfono Administrador: {{ property.adminphone }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Detalles del Inmueble</h2>
+                        <p class="text-gray-600">Parqueaderos: {{ property.parkings }}</p>
+                        <p class="text-gray-600">Área: {{ property.area1 }} m²</p>
+                        {% if property.address%}
+                        <p class="text-gray-600">Dirección: {{ property.address }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-xl font-semibold text-blue-900">Precios</h2>
+                        <p class="text-gray-600">Renta: {{ property.rentprice }}</p>
+                        <p class="text-gray-600">Mantenimiento: {{ property.mainteinprice }}</p>
+                        <p class="text-gray-600">Precio por m²: {{ property.costxm2 }}</p>
+                        <p class="text-gray-600">Mantenimiento por m²: {{ property.maintxm2 }}</p>
+                        {% if property.maindescrp %}
+                        <p class="text-gray-600">Descripción Mantenimiento: {{ property.maindescrp }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if property.currentlease %}
+                        <h2 class="text-xl font-semibold text-blue-900">Contrato</h2>
+                        <p class="text-gray-600">Inquilino: <a class="text-blue-900" href="{% url 'clients_detail' property.currentlease.id %}">{{ property.currentlease }}</a></p>
+                        <p class="text-gray-600">Pago Mantenimiento: {{ property.pay }}</p>
+                        <p class="text-gray-600">Póliza Seguridad Social: {{ property.poliza }}</p>
+                        <p class="text-gray-600">Depósito: {{ property.deposit }}</p>
+                        <p class="text-gray-600">Inicio: {{ property.leasestart }}</p>
+                        <p class="text-gray-600">Fin: {{ property.leasend }}</p>
+                        <p class="text-gray-600">Incremento: {{ property.increase }}</p>
+                        <p class="text-gray-600">Última fecha de Incremento: {{ property.lastincrease }}</p>
+                        <p class="text-gray-600">Renovación: {{ property.get_renov_display }}</p>
+                        <p class="text-gray-600">Notificación de Renovación: {{ property.notifyrenew }} días</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-8 py-4 bg-gray-50 text-right">
+            <a href="{% url 'properties_edit' property.id %}" class="bg-blue-900 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">Modificar</a>
+            <a href="{% url 'properties_delete' property.id %}" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300">Borrar</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

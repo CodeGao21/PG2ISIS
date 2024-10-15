@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Modificar Sociedad{% endblock %} 
+
+{% block content %}
+<div class="mt-8 bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto pt-4 border border-blue-900">
+    <h1 class="text-3xl text-blue-900 mb-6">Modificar Sociedad</h1>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-bold text-gray-700 mb-2">Nombre</label>
+            <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" value="{{ form.instance.name }}" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="ruc" class="block text-sm font-bold text-gray-700 mb-2">RUC y VT</label>
+            <input type="text" id="ruc" name="ruc" class="w-full p-2 border border-gray-300 rounded" value="{{ form.instance.ruc }}" >
+        </div>
+ 
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-bold text-gray-700 mb-2">Descripción</label>
+            <textarea id="description" name="description" class="w-full p-2 border border-gray-300 rounded">{{ form.instance.description }}</textarea>
+        </div>
+
+
+        <div class="flex items-center justify-center mt-4">
+            <button class="py-2 px-4 bg-blue-900 hover:bg-blue-700 text-sm text-white rounded-full" type="submit">Modificar</button>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
