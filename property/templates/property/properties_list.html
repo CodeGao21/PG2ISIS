@@ -10,7 +10,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-6">
         {% for property in properties %}
             <a href="{% url 'properties_detail' property.id %}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-md">
-                <img src="https://source.unsplash.com/800x500/?realstate" alt="{{ property.name }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
+                <img src="https://media.istockphoto.com/id/1316331605/vector/modern-city-building-exterior-office-center-or-business-house.jpg?s=612x612&w=0&k=20&c=VTJvkEXvS1xS53IxM6p7aJYj2RCZqeYVA57i5WfXkI8=" alt="{{ property.name }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
                 <h2 class="text-blue-900 text-lg font-semibold">{{ property.name }}</h2>
                 <p class="text-gray-700">{{ property.state }}</p>
             </a>

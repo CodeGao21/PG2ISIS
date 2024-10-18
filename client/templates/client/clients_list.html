@@ -13,8 +13,7 @@
                 {% if client.client_image %}
                     <img src="{{ client.client_image.url }}" alt="{{ client.commercialname }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
                 {% else %}
-                    <!-- Use Unsplash image with specific keyword (e.g., "business") if no client image is available -->
-                    <img src="https://source.unsplash.com/800x500/?realstate" alt="{{ client.commercialname }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
+                    <img src="https://img.freepik.com/free-vector/chatbot-customer-service-abstract-concept_335657-3037.jpg" alt="{{ client.commercialname }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
                 {% endif %}
                 <h2 class="text-blue-900 text-lg font-semibold">{{ client.commercialname }}</h2>
             </a>

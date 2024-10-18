@@ -10,8 +10,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-6">
         {% for process in processes %}
             <a href="{% url 'processes_detail' process.id %}" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-md">
-                <!-- Use Unsplash image with specific keyword (e.g., "process") if no process image is available -->
-                <img src="https://source.unsplash.com/800x500/?realstate" alt="{{ process.name }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
+                <img src="https://st3.depositphotos.com/14846838/19149/v/380/depositphotos_191494492-stock-illustration-modern-illustration-workflow-process-vector.jpg" alt="{{ process.name }}" class="w-full h-40 object-cover object-center mb-4 rounded-md">
                 <h2 class="text-blue-900 text-lg font-semibold">{{ process.name }}</h2>
                 {% if process.prop %}
                 <p class="px-2 overflow-hidden overflow-ellipsis whitespace-pre-line">{{ process.prop }}</p>
